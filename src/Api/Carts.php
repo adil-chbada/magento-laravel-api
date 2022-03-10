@@ -2,6 +2,8 @@
 
 namespace Grayloon\Magento\Api;
 
+use Illuminate\Http\Client\Response;
+
 class Carts extends AbstractApi
 {
     /**
@@ -19,9 +21,8 @@ class Carts extends AbstractApi
     /**
      * Returns information for the cart for the authenticated customer. Must have a store code.
      *
-     * @return array
      */
-    public function create()
+    public function create(): Response
     {
         $this->validateSingleStoreCode();
 

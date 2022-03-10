@@ -2,6 +2,8 @@
 
 namespace Grayloon\Magento\Api;
 
+use Illuminate\Http\Client\Response;
+
 class Customers extends AbstractApi
 {
     /**
@@ -10,7 +12,6 @@ class Customers extends AbstractApi
      * @param  int  $pageSize
      * @param  int  $currentPage
      * @param  array  $filters
-     * @return array
      */
     public function all($pageSize = 50, $currentPage = 1, $filters = [])
     {
@@ -20,13 +21,8 @@ class Customers extends AbstractApi
         ]));
     }
 
-    /**
-     * Create customer account. Perform necessary business operations like sending email.
-     *
-     * @param  array  $body
-     * @return array
-     */
-    public function create($body)
+
+    public function create(array $body): Response
     {
         return $this->post('/customers', $body);
     }

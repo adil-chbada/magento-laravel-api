@@ -9,7 +9,7 @@ class Products extends AbstractApi
      *
      * @param  int  $pageSize
      * @param  int  $currentPage
-     * @return array
+     * @return \Illuminate\Http\Client\Response
      */
     public function all($pageSize = 50, $currentPage = 1, $filters = [])
     {

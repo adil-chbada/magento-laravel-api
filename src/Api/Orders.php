@@ -10,7 +10,7 @@ class Orders extends AbstractApi
      * @param  int  $pageSize
      * @param  int  $currentPage
      * @param  array  $filters
-     * @return array
+     * @return \Illuminate\Http\Client\Response
      */
     public function all($pageSize = 50, $currentPage = 1, $filters = [])
     {

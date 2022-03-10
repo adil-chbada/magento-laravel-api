@@ -4,6 +4,7 @@ namespace Grayloon\Magento\Api;
 
 use Exception;
 use Grayloon\Magento\Magento;
+use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 
@@ -52,11 +53,11 @@ abstract class AbstractApi
      *
      * @param  string  $path
      * @param  string  $parameters
-     * @return \Illuminate\Http\Client\Response
+     * @return Response
      */
     protected function get($path, $parameters = [])
     {
-        return $this->checkExceptions(Http::withToken($this->magento->token)
+        return $this->checkExceptions(Http::withToken($this->magento->token)->withoutVerifying()
             ->get($this->apiRequest.$path, $parameters), $this->apiRequest.$path, $parameters);
     }
 
@@ -65,11 +66,11 @@ abstract class AbstractApi
      *
      * @param  string  $path
      * @param  string  $parameters
-     * @return \Illuminate\Http\Client\Response
+     * @return Response
      */
-    protected function post($path, $parameters = [])
+    protected function post($path, $parameters = []): Response
     {
-        return $this->checkExceptions(Http::withToken($this->magento->token)
+        return $this->checkExceptions(Http::withToken($this->magento->token)->withoutVerifying()
             ->post($this->apiRequest.$path, $parameters), $this->apiRequest.$path, $parameters);
     }
 
@@ -78,11 +79,11 @@ abstract class AbstractApi
      *
      * @param $path
      * @param  array  $parameters
-     * @return \Illuminate\Http\Client\Response|void
+     * @return Response|void
      */
     protected function put($path, $parameters = [])
     {
-        return $this->checkExceptions(Http::withToken($this->magento->token)
+        return $this->checkExceptions(Http::withToken($this->magento->token)->withoutVerifying()
             ->put($this->apiRequest.$path, $parameters), $this->apiRequest.$path, $parameters);
     }
 
@@ -91,18 +92,18 @@ abstract class AbstractApi
      *
      * @param $path
      * @param  array  $parameters
-     * @return \Illuminate\Http\Client\Response|void
+     * @return Response|void
      */
     protected function delete($path, $parameters = [])
     {
-        return $this->checkExceptions(Http::withToken($this->magento->token)
+        return $this->checkExceptions(Http::withToken($this->magento->token)->withoutVerifying()
             ->delete($this->apiRequest.$path, $parameters), $this->apiRequest.$path, $parameters);
     }
 
     /**
      * Check for any type of invalid API Responses.
      *
-     * @param  \Illuminate\Http\Client\Response  $response
+     * @param  Response  $response
      * @return void
      *
      * @throws \Exception
