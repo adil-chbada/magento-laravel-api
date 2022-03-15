@@ -31,18 +31,17 @@ class Orders extends AbstractApi
         return $this->get('/orders/'.$orderId);
     }
 
-    /**
-     * Performs persist operations for a specified order.
-     *
-     * @see https://magento.redoc.ly/2.4.3-admin/tag/orders/#operation/salesOrderRepositoryV1SavePost
-     *
-     * @param  array  $entity
-     * @return array
-     */
-    public function edit($entity = [])
+
+    public function create($body = [])
     {
-        return $this->post('/orders', [
-            'entity' => $entity,
+        return $this->put('/orders/create', $body);
+    }
+
+    public function getOrdersByCustomer($customer_id, $customer_value)
+    {
+        return $this->get('/orders', [
+            'searchCriteria[filterGroups][0][filters][0][field]' => $customer_id,
+            'searchCriteria[filterGroups][0][filters][0][value]' => $customer_value,
         ]);
     }
 }
