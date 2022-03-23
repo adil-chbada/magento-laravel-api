@@ -44,4 +44,12 @@ class Orders extends AbstractApi
             'searchCriteria[filterGroups][0][filters][0][value]' => $customer_value,
         ]);
     }
+
+    public function getOrdersByItinareaValidation($itinarea_validation, $itinarea_validation_value)
+    {
+        return $this->get('/orders', [
+            'searchCriteria[filterGroups][0][filters][0][field]' => $itinarea_validation,
+            'searchCriteria[filterGroups][0][filters][0][value]' => $itinarea_validation_value,
+        ]);
+    }
 }
