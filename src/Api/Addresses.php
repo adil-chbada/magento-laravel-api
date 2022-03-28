@@ -14,7 +14,7 @@ class Addresses extends AbstractApi
      */
     public function edit($id, $body)
     {
-        return $this->put('/customers/' . $id, 'customer' => $body);
+        return $this->put('/customers/' . $id, ['customer' => $body]);
     }
 
 }
