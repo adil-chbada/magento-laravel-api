@@ -34,7 +34,7 @@ class Orders extends AbstractApi
 
     public function create($body = [])
     {
-        return $this->put('/orders/create', $body);
+        return $this->put('/orders/create', ['entity'=> $body]);
     }
 
     public function getOrdersByCustomer($customer_id, $customer_value)
